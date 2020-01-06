@@ -1,0 +1,73 @@
+# Server settings
+server:
+    port: 10011
+    #address: localhost
+
+# SPRING PROFILES
+spring: 
+    # APP (for Eureka)
+    application:
+        name: cetccity-coc-case-service  # 注册到eureka.instance.*
+    # DATASOURCE
+    datasource: 
+        url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=GMT%2B8
+        username: root
+        password: 592012
+        driver-class-name: com.mysql.jdbc.Driver
+    http:
+        encoding:
+            charset: UTF-8
+            enabled: true
+            force: true
+    jackson:
+        #date-format: yyyy-MM-dd'T'HH:mm:ss+0800
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
+        #date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
+        serialization: 
+            write-dates-as-timestamps: false
+    mvc: 
+        date-format: yyyy-MM-dd HH:mm:ss
+    servlet:
+        multipart:
+            max-file-size: 50MB
+            max-request-size: 50MB
+    main:
+        allow-bean-definition-overriding: true
+    #devtools: 
+        #restart: 
+            #additional-paths: src\\main\\java\\com\\cetccity\\common\\system\\mgr\\mapper
+    thymeleaf: 
+        cache: false
+
+# MyBatis
+mybatis:
+    configuration:
+        map-underscore-to-camel-case: true
+    typeAliasesPackage: com.SoMessThat.sys.**.domain
+    mapperLocations: classpath:/com/SoMessThat/sys/**/mapper/*.xml
+    #configLocation: classpath:/config/mybatis-config.xml
+
+# MyBatis PageHelper.
+pagehelper: 
+    #autoRuntimeDialect: true #动态数据源时，才设置
+    #closeConn: true #动态数据源时，才设置（根据数据库特性设置）
+    helperDialect: mysql
+    offsetAsPageNum: true
+    rowBoundsWithCount: true
+    pageSizeZero: true
+    reasonable: true
+    supportMethodsArguments: true
+    #params: pageNum=pageNum;pageSize=pageSize;count=countSql;reasonable=reasonable;pageSizeZero=pageSizeZero
+    
+logging:
+    level:
+        ROOT: info
+        org.springframework.web: ERROR
+        com.ibatis: debug
+        com.cetccity: info
+        com.SoMessThat.sys.mapper: debug
+    pattern: 
+        console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+        file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
